@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyPie Derby</title>
+</head>
+
+<body>
+    <div>
+        <a href="/dashboard"><button>Pie</button></a>
+        <a href="/logout"><button>Logout</button></a>
+        <br> <br> <br> <br>
+    </div>
+    <div>
+        <h1>Edit Pie Lattes</h1>
+
+        
+        <form action="/edit" method="post">
+            {% csrf_token %}
+            <label for="pie_name">Name : <input type="text" name="pie_name" value="{{specific_pie.name}}"></label>
+            <br><br><br><br>
+            <input type="hidden" name="hidden_id" value="{{specific_pie.id}}">
+            <label for="filling">Filling : <input type="text" value="{{specific_pie.filling}}" name="filling"></label>
+            <label for="crust">Crust : <input type="text" name="crust" value="{{specific_pie.crust}}"></label>
+            <button type="submit">Edit Pie</button>
+        </form>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+
+</html>

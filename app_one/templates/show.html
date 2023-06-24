@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyPie Derby</title>
+</head>
+<body>
+    <div>
+        <a href="/dashboard"><button>Dashboard</button></a>
+        <a href="/logout"><button>Logout</button></a>
+        <br> <br> <br> <br>
+    </div>
+    <h1>rrrr</h1>
+    <h1> {{specific_pie.name}} by {{specific_pie.made_by.first_name}} </h1>
+    <h3> {{specific_pie.filling}} </h3>
+    <h3>with a {{specific_pie.crust}} </h3>
+
+    {% if logged_user in specific_pie.users_who_voted.all %}
+    <br><a href="/pies"><button>Yuck</button></a>
+    <p>already added to favorite</p>
+    {% else %}
+    <form action="/vote" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="vote_id" value="{{specific_pie.id}}">
+        <button type="submit">Delicious</button>
+    </form>
+    {% endif %}
+
+    <h3>Cast a vote</h3>
+
+    
+</body>
+</html>

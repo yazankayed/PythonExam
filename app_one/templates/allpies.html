@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyPie Derby</title>
+</head>
+
+<body>
+    <div>
+        <a href="/dashboard"><button>Dashboard</button></a>
+        <a href="/logout"><button>Logout</button></a>
+        <br> <br> <br> <br>
+    </div>
+    <div>
+        <h1>PyPie Derby</h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>PyPie</th>
+                <th>Votes</th>
+            </tr>
+            {% for i in all_pies %}
+            
+            <tr>
+                <td> <a href="/show/{{i.id}}"> {{i.name}}</a> </td>
+                <td> {{i.made_by.first_name}}  {{i.made_by.last_name}} </td>
+                <td>{{i.votes}}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+
+    </div>
+</body>
+
+</html>
